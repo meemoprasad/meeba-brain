@@ -31,6 +31,7 @@ Explore how Meeba Brain analyzed a real bug involving unresolved Python annotati
 - [Proposed fix and code diff](https://github.com/ComposioHQ/composio/pull/5024)
 
 This case study documents an engineering analysis, not an endorsement by Composio or a claim that the proposed fix has been merged.
+
 We will publish reproducible engineering examples covering:
 
 1. **Code-change impact:** What could be affected by a particular change?
