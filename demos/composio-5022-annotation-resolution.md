@@ -49,6 +49,20 @@ The review also revealed improvements needed in the analysis itself:
 - Potential breakage from changing a private function's return contract should be investigated by checking its callers, rather than assumed to be the only possible risk.
 
 This is an important part of evaluating evidence-grounded tools: the analysis must itself be independently verifiable.
+## Actual Meeba Brain output
+
+The following screenshots show the product analyzing
+the Composio pull request in its repository context.
+
+**Investigation:** 7 files read in 5 minutes 31 seconds.
+
+### Findings and source evidence
+
+![Meeba Brain code-impact analysis](images/meeba-brain-composio-analysis-1.png)
+
+### Risk analysis and test coverage
+
+![Meeba Brain risk analysis](images/meeba-brain-composio-analysis-2.png)
 
 ## Evaluation checklist
 
