@@ -22,7 +22,15 @@ Explore the product: https://meeba.ai/brain
 Bring a concrete debugging or code-change question. Check whether the answer identifies relevant source locations, distinguishes verified facts from hypotheses, and gives you enough evidence to validate the conclusion.
 
 ## Demos and experiments
+### Featured case study: Composio Python SDK
 
+Explore how Meeba Brain analyzed a real bug involving unresolved Python annotations, traced the proposed fix to implementation and regression tests, and identified assumptions requiring further verification.
+
+- [Read the case study](demos/composio-5022-annotation-resolution.md)
+- [Original bug report](https://github.com/ComposioHQ/composio/issues/5022)
+- [Proposed fix and code diff](https://github.com/ComposioHQ/composio/pull/5024)
+
+This case study documents an engineering analysis, not an endorsement by Composio or a claim that the proposed fix has been merged.
 We will publish reproducible engineering examples covering:
 
 1. **Code-change impact:** What could be affected by a particular change?
