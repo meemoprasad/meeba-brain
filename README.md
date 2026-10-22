@@ -1,86 +1,50 @@
-# Meeba Brain — Evidence for Code Changes
+# Meeba Brain
 
-**Know what your AI-generated code changes affect.**
+**Know what your code change really breaks, with evidence.**
 
-AI coding agents can write code quickly. Understanding the consequences of those changes—and verifying debugging claims—takes evidence.
+Meeba Brain is an evidence-first code intelligence layer for teams using AI coding tools. It traces impact and root causes across large codebases, cites the exact code behind every claim, and marks what it couldn't verify. It works in the web app and inside Cursor and Claude Code via MCP.
 
-Meeba Brain helps developers investigate code changes and connect findings to concrete source-code locations.
+This repository holds public, checkable examples of Meeba Brain on real open-source code: the question, the answer, the exact lines behind it, and where the answer fell short.
 
-> Don't just give an answer. Show the evidence behind it.
+- Try it: [meeba.ai/brain](https://meeba.ai/brain) (free to start, read-only GitHub access)
+- Discuss a case or send a counterexample: [Discussions](https://github.com/meemoprasad/meeba-brain/discussions)
 
-## What we're exploring
+## Case studies
 
-- **Code-change impact:** Investigate which files, callers, and behaviors may be affected by a change.
-- **Evidence-linked debugging:** Connect findings to relevant file-and-line references.
-- **AI-generated code verification:** Check claims against available source code instead of treating plausible output as proof.
-- **Real engineering cases:** Document reproduction steps, supporting evidence, test results, and limitations.
+| Case | Question | What to check |
+|---|---|---|
+| [Composio Python SDK: unresolved annotation error](demos/composio-5022-annotation-resolution.md) | What does the proposed fix for issue [#5022](https://github.com/ComposioHQ/composio/issues/5022) ([PR #5024](https://github.com/ComposioHQ/composio/pull/5024)) really change? | Behaviour changes, the tests that cover them, one caller of the changed private function, and one test the answer named wrongly |
 
-## Try Meeba Brain
+Each case study is an independent analysis. It is not an endorsement by the project's maintainers, and it says whether the change was merged.
 
-Explore the product: https://meeba.ai/brain
+## Where Meeba Brain fits
 
-Bring a concrete debugging or code-change question. Check whether the answer identifies relevant source locations, distinguishes verified facts from hypotheses, and gives you enough evidence to validate the conclusion.
+| If your team uses | They're good at | Meeba Brain adds |
+|---|---|---|
+| AI coding agents (Cursor, Claude Code, Copilot, Codex) | Writing and editing code | Evidence for every claim, in the same editor through MCP |
+| AI code review (CodeRabbit, Greptile, Qodo) | Comments on the pull request | What the change affects outside its diff |
+| Code search (Sourcegraph, DeepWiki) | Finding where code lives | Whether a claim about that code is true, with the lines that show it |
+| Production RCA (Sentry Seer, observability AI) | Finding the incident in logs and traces | The code path behind the error, and what else a fix will touch |
 
-## Demos and experiments
-### Featured case study: Composio Python SDK
+## How to judge an answer
 
-Explore how Meeba Brain analyzed a real bug involving unresolved Python annotations, traced the proposed fix to implementation and regression tests, and identified assumptions requiring further verification.
+Use this on our case studies, and on any AI answer about code:
 
-- [Read the case study](demos/composio-5022-annotation-resolution.md)
-- [Original bug report](https://github.com/ComposioHQ/composio/issues/5022)
-- [Proposed fix and code diff](https://github.com/ComposioHQ/composio/pull/5024)
+1. Are the cited files and lines real, and do they say what the answer claims?
+2. Is a claim marked verified only when the code or a run shows it?
+3. Does the answer say what it did not check?
+4. Can the behaviour be reproduced, and is the fix covered by a test?
 
-This case study documents an engineering analysis, not an endorsement by Composio or a claim that the proposed fix has been merged.
+## What to expect today
 
-We publish reproducible engineering examples covering:
+- On a large repository an answer usually takes 1 to 2 minutes, because it reads the code before answering.
+- It can still be wrong. That's why every claim links to the exact lines, so you can check it in one click.
+- It asks for read-only GitHub access. We don't have SOC 2 yet, so many teams start on a public or non-sensitive repository.
 
-1. **Code-change impact:** What could be affected by a particular change?
-2. **Evidence-linked debugging:** Can a suspected bug be traced to relevant code?
-3. **Production-log-assisted debugging:** Can available GCP logs help investigate a failure?
+## Contributing a case
 
-Each published case should document its inputs, setup, evidence, findings, verification, and limitations. Results will be added when the demonstrations are ready and verified.
-
-## Open-source contributions
-
-This project also documents relevant engineering problems investigated in public repositories.
-
-- **Issues:** Links to actual upstream bug reports and reproductions.
-- **Pull requests:** Links to actual code changes and their current review status.
-- **Evaluation cases:** Minimal examples that developers can inspect and reproduce.
-
-Upstream issues and pull requests remain in their original repositories. Their maintainers independently determine whether changes are accepted or merged.
-
-## How to evaluate an answer
-
-Ask these questions:
-
-- Are the cited files and lines real and relevant?
-- Can the claimed behavior be reproduced?
-- Does the answer separate verified facts from hypotheses and unknowns?
-- Does it acknowledge missing context instead of inventing details?
-- Is the proposed fix validated by a test or observable result?
-
-Counterexamples and incorrect findings are welcome. They help expose where evidence is incomplete or conclusions need improvement.
-
-## Share an engineering case
-
-Open an issue in this repository: https://github.com/meemoprasad/meeba-brain/issues
-
-Include a clear problem statement, reproduction steps, expected and actual behavior, relevant source locations, and verification details.
-
-Never publish credentials, access tokens, private source code, personal data, or sensitive production logs.
-
-## Project status
-
-This repository is an evolving collection of engineering demonstrations and evaluation cases. It is not a claim of universal accuracy. Each published example should document its test conditions and limitations.
-
-## About
-
-Built by [Inteligrator Technologies](https://inteligrator.tech).
-
-- **Product:** [Meeba Brain](https://meeba.ai/brain)
-- **Source of examples:** Public engineering problems, reproducible cases, and documented experiments.
+Open a discussion with: the repository and commit, the question you asked, the answer, the lines you checked, and what was right or wrong. Counterexamples are as welcome as good results. Please don't post credentials, private code, personal data or production logs.
 
 ---
 
-**Working principle:** A debugging conclusion is more useful when developers can inspect the evidence and verify it themselves.
+Built by [Meeba AI](https://meeba.ai) (Inteligrator Technologies Pvt. Ltd., Raipur, India).
