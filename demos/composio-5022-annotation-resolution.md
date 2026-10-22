@@ -49,6 +49,54 @@ The review also revealed improvements needed in the analysis itself:
 - Potential breakage from changing a private function's return contract should be investigated by checking its callers, rather than assumed to be the only possible risk.
 
 This is an important part of evaluating evidence-grounded tools: the analysis must itself be independently verifiable.
+
+<!-- Paste this into demos/composio-5022-annotation-resolution.md, right after the
+     summary at the top (before the screenshots). Every link is pinned to a commit,
+     so the line numbers stay correct even after the branches move.
+     Base = next @ 6f94cc9 (the commit the issue reproduced on).
+     Fix  = PR #5024 head @ 7781213. -->
+
+## Evidence
+
+**The bug, on `next` at [`6f94cc9`](https://github.com/ComposioHQ/composio/commit/6f94cc9068708bb84e060164d8d99879ae8288f9)**
+
+| What | Where |
+|---|---|
+| `_resolve_function_annotations` catches every exception from `typing.get_type_hints` and returns `{}`, so the real `NameError` is lost | [`custom_tool.py:298-306`](https://github.com/ComposioHQ/composio/blob/6f94cc9068708bb84e060164d8d99879ae8288f9/python/composio/core/models/custom_tool.py#L298-L306) |
+| The first parameter falls back to the raw string annotation `'SearchInput'` | [`custom_tool.py:374`](https://github.com/ComposioHQ/composio/blob/6f94cc9068708bb84e060164d8d99879ae8288f9/python/composio/core/models/custom_tool.py#L374) |
+| A string is not a `BaseModel` subclass, so the user sees "must be annotated with a Pydantic BaseModel subclass" | [`custom_tool.py:375-382`](https://github.com/ComposioHQ/composio/blob/6f94cc9068708bb84e060164d8d99879ae8288f9/python/composio/core/models/custom_tool.py#L375-L382) |
+| The existing test only covers a model defined above the tool | [`test_custom_tools.py`, `test_future_annotations_are_resolved`](https://github.com/ComposioHQ/composio/blob/7781213ffa1804665942f514311afaff9999fac2/python/tests/test_custom_tools.py#L340) |
+
+**The proposed fix, PR #5024 at [`7781213`](https://github.com/ComposioHQ/composio/commit/7781213ffa1804665942f514311afaff9999fac2)**
+
+| Change | Where |
+|---|---|
+| `_resolve_function_annotations` now returns the error with the annotations, instead of dropping it | [`custom_tool.py:292-306`](https://github.com/ComposioHQ/composio/blob/7781213ffa1804665942f514311afaff9999fac2/python/composio/core/models/custom_tool.py#L292-L306) |
+| New `_resolve_single_annotation` resolves only the input annotation, so an unresolved return type doesn't blame a valid input | [`custom_tool.py:309-330`](https://github.com/ComposioHQ/composio/blob/7781213ffa1804665942f514311afaff9999fac2/python/composio/core/models/custom_tool.py#L309-L330) |
+| If the input annotation still can't be resolved, the error names it and the underlying exception, with how to fix it | [`custom_tool.py:399-417`](https://github.com/ComposioHQ/composio/blob/7781213ffa1804665942f514311afaff9999fac2/python/composio/core/models/custom_tool.py#L399-L417) |
+| The only caller of the changed private function, updated for the new return value | [`custom_tool.py:377`](https://github.com/ComposioHQ/composio/blob/7781213ffa1804665942f514311afaff9999fac2/python/composio/core/models/custom_tool.py#L377) |
+
+**New regression tests in the PR**
+
+| Test | Case |
+|---|---|
+| [`test_unresolved_future_annotation_reports_real_cause`](https://github.com/ComposioHQ/composio/blob/7781213ffa1804665942f514311afaff9999fac2/python/tests/test_custom_tools.py#L275) | Input model defined after the tool |
+| [`test_type_checking_only_import_reports_real_cause`](https://github.com/ComposioHQ/composio/blob/7781213ffa1804665942f514311afaff9999fac2/python/tests/test_custom_tools.py#L294) | Input model imported only under `TYPE_CHECKING` |
+| [`test_unresolved_return_annotation_does_not_block_input`](https://github.com/ComposioHQ/composio/blob/7781213ffa1804665942f514311afaff9999fac2/python/tests/test_custom_tools.py#L313) | Valid input with an unresolvable return annotation |
+
+**How Meeba Brain's answer held up**
+
+| Claim in the answer | Status |
+|---|---|
+| The resolution error is now kept instead of swallowed | Verified, lines 292-306 above |
+| The input annotation is resolved on its own before it is blamed | Verified, lines 309-330 and 399-417 |
+| The change is covered by new regression tests | Verified, but one test was named wrongly in the answer. The real names are in the table above |
+| Changing the private function's return value could break other callers | Flagged as a risk, not checked by the answer. Checked by hand: there is one caller, line 377, and the PR updates it |
+| Line references | The answer cited diff-relative line numbers. The table above replaces them with links pinned to commits |
+| How much the tests cover | Needed qualifying: the three tests cover the three reported cases, not every way an annotation can fail to resolve |
+
+The analysis is independent and not an endorsement by Composio. The issue was reported by the author of this case study; the fix was written by another contributor ([@MilindDevX](https://github.com/MilindDevX)). At the time of writing PR #5024 is open, not merged.
+
 ## Actual Meeba Brain output
 
 The following screenshots show the product analyzing
