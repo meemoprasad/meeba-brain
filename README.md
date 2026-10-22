@@ -14,6 +14,7 @@ This repository holds public, checkable examples of Meeba Brain on real open-sou
 | Case | Question | What to check |
 |---|---|---|
 | [Composio Python SDK: unresolved annotation error](demos/composio-5022-annotation-resolution.md) | What does the proposed fix for issue [#5022](https://github.com/ComposioHQ/composio/issues/5022) ([PR #5024](https://github.com/ComposioHQ/composio/pull/5024)) really change? | Behaviour changes, the tests that cover them, one caller of the changed private function, and one test the answer named wrongly |
+| [frappe/lending: early payment and the first EMI date](demos/frappe-lending-1537-early-payment-first-emi.md) | What do the three commits in the merged fix [#1537](https://github.com/frappe/lending/pull/1537) change, and what outside the diff can they affect? | The call chain and line references, the effect on interest for the deferred period (which the answer missed), and a test gap for interest-only first EMIs |
 
 Each case study is an independent analysis. It is not an endorsement by the project's maintainers, and it says whether the change was merged.
 
