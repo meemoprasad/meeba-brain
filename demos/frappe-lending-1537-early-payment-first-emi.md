@@ -72,15 +72,15 @@ All verified in code at `267b698`.
 
 *22 Oct 2026, frappe/lending @ `267b698`, after the fix described above.*
 
-![Meeba Brain: the question, the indexed commit note and the verdict](frappe-1537-1-question-and-verdict.png)
+![Meeba Brain: the question, the indexed commit note and the verdict](images/frappe-1537-1-question-and-verdict.png)
 
 *1. The answer states which commit is indexed and that it reads the three commits' diffs directly, then gives the verdict.*
 
-![Meeba Brain: commit f0364f4 explained with the code quoted from its diff](frappe-1537-2-commit-evidence.png)
+![Meeba Brain: commit f0364f4 explained with the code quoted from its diff](images/frappe-1537-2-commit-evidence.png)
 
 *2. Each commit is explained with code quoted from that commit's diff, labelled "from diff f0364f4" rather than cited against the current file.*
 
-![Meeba Brain: impact on the new schedule, downstream effects and test coverage with line links](frappe-1537-3-impact-and-tests.png)
+![Meeba Brain: impact on the new schedule, downstream effects and test coverage with line links](images/frappe-1537-3-impact-and-tests.png)
 
 *3. Line-linked impact (`:864`, `:944`, `:885`, `:961`) and the tests that cover it. The downstream bullets (demands, accruals) are not cited at the line level, and the effect on interest for the deferred period is missing, as noted above.*
 
