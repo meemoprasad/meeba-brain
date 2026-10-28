@@ -9,12 +9,16 @@ This repository holds public, checkable examples of Meeba Brain on real open-sou
 - Try it: [meeba.ai/brain](https://meeba.ai/brain) (free to start, read-only GitHub access)
 - Discuss a case or send a counterexample: [Discussions](https://github.com/meemoprasad/meeba-brain/discussions)
 
+> "An answer where every claim links to the exact line is much easier to trust than a confident summary."
+>
+> — [Milind Bansal](https://github.com/MilindDevX), open-source contributor (author of Composio PR #5024)
+
 ## Case studies
 
 | Case | Question | What to check |
 |---|---|---|
-| [Composio Python SDK: unresolved annotation error](demos/composio-5022-annotation-resolution.md) | What does the proposed fix for issue [#5022](https://github.com/ComposioHQ/composio/issues/5022) ([PR #5024](https://github.com/ComposioHQ/composio/pull/5024)) really change? | Behaviour changes, the tests that cover them, one caller of the changed private function, and one test the answer named wrongly |
-| [frappe/lending: early payment and the first EMI date](demos/frappe-lending-1537-early-payment-first-emi.md) | What do the three commits in the merged fix [#1537](https://github.com/frappe/lending/pull/1537) change, and what outside the diff can they affect? | The call chain and line references, the effect on interest for the deferred period (which the answer missed), and a test gap for interest-only first EMIs |
+| [frappe/lending: early payment and the first EMI date](demos/frappe-lending-1537-early-payment-first-emi.md) | What do the three commits in the merged fix [#1537](https://github.com/frappe/lending/pull/1537) change, and what outside the diff can they affect? | Outside the diff: the effect on interest for the deferred period (which the answer missed) and a test gap for interest-only first EMIs; then the call chain and line references |
+| [Composio Python SDK: unresolved annotation error](demos/composio-5022-annotation-resolution.md) | What does the proposed fix for issue [#5022](https://github.com/ComposioHQ/composio/issues/5022) ([PR #5024](https://github.com/ComposioHQ/composio/pull/5024)) really change? (The issue was later fixed by the maintainers in [#5061](https://github.com/ComposioHQ/composio/pull/5061).) | Outside the diff: one caller of the changed private function; then the behaviour changes, the tests that cover them, and one test the answer named wrongly |
 
 Each case study is an independent analysis. It is not an endorsement by the project's maintainers, and it says whether the change was merged.
 
