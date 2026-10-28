@@ -5,7 +5,7 @@
 **Project:** [Composio](https://github.com/ComposioHQ/composio)  
 **Issue:** [#5022 — Misleading error for unresolved input annotations](https://github.com/ComposioHQ/composio/issues/5022)  
 **Proposed fix:** [PR #5024](https://github.com/ComposioHQ/composio/pull/5024)  
-**Status:** PR open and unmerged at the time of this case study's review.
+**Status:** Fixed upstream. The Composio maintainers merged their own fix in [PR #5061](https://github.com/ComposioHQ/composio/pull/5061) (commit `116811bb`, 22 Oct 2026), which closes #5022. Community PR #5024, analysed below, was not merged.
 
 This case examines whether Meeba Brain can explain a real code change, connect findings to implementation and test evidence, and distinguish verified behavior from potential risks.
 
@@ -95,7 +95,7 @@ This is an important part of evaluating evidence-grounded tools: the analysis mu
 | Line references | The answer cited diff-relative line numbers. The table above replaces them with links pinned to commits |
 | How much the tests cover | Needed qualifying: the three tests cover the three reported cases, not every way an annotation can fail to resolve |
 
-The analysis is independent and not an endorsement by Composio. The issue was reported by the author of this case study; the fix was written by another contributor ([@MilindDevX](https://github.com/MilindDevX)). At the time of writing PR #5024 is open, not merged.
+The analysis is independent and not an endorsement by Composio. The issue was reported by the author of this case study; PR #5024 was written by another contributor ([@MilindDevX](https://github.com/MilindDevX)). PR #5024 was not merged; the maintainers fixed the issue in [#5061](https://github.com/ComposioHQ/composio/pull/5061) instead. That fix replaces `_resolve_function_annotations` with `_resolve_input_annotation`, raises a `ValidationError` that names the unresolved annotation and says to define the model before the tool or import it at runtime instead of under `TYPE_CHECKING`, and also stops rejecting tools whose `ctx` or return annotation is only imported under `TYPE_CHECKING`. This case study still documents the analysis of #5024 as it was reviewed.
 
 ## Actual Meeba Brain output
 
