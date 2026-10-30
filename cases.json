@@ -1,0 +1,50 @@
+{
+  "updated": "2026-10-30",
+  "cases": [
+    {
+      "id": "frappe-lending-1537",
+      "show": true,
+      "source": "frappe/lending · issue #1536 · merged fix #1537",
+      "title": "What does a \"first EMI date\" fix touch outside its diff?",
+      "summary": "Asked about the three commits in the maintainers' merged fix, Meeba Brain explained each one from its own diff, traced the call chain in `loan_repayment_schedule.py` with line links, and found a test gap: no test covers an early payment made before an interest-only first EMI. The run took 72.5 seconds.",
+      "miss": "it missed that the new first EMI date also changes the interest charged for the deferred period, and earlier runs invented commit messages for commits they had not read. The case study shows both next to the real code.",
+      "case_url": "https://github.com/meemoprasad/meeba-brain/blob/main/demos/frappe-lending-1537-early-payment-first-emi.md",
+      "discuss_url": "https://github.com/meemoprasad/meeba-brain/discussions",
+      "note": "Independent analysis. Not an endorsement by Frappe. The fix was written and merged by the frappe/lending maintainers."
+    },
+    {
+      "id": "composio-5022",
+      "show": true,
+      "source": "ComposioHQ/composio · issue #5022 · pull request #5024",
+      "title": "What does the fix for a misleading annotation error really change?",
+      "summary": "Asked about the proposed fix, Meeba Brain traced the behaviour changes in `custom_tool.py`, linked them to the new regression tests, and flagged a possible compatibility risk from changing a private function's return value. It read 7 files in about five and a half minutes.",
+      "miss": "it gave one test the wrong name, and its compatibility risk still had to be checked against the function's callers by hand. The case study shows both next to the real code.",
+      "case_url": "https://github.com/meemoprasad/meeba-brain/blob/main/demos/composio-5022-annotation-resolution.md",
+      "discuss_url": "https://github.com/meemoprasad/meeba-brain/discussions/1",
+      "note": "Independent analysis. Not an endorsement by Composio. The maintainers later fixed the issue in #5061; pull request #5024 was not merged."
+    }
+  ],
+  "quotes": [
+    {
+      "show": true,
+      "text": "Meeba Brain is a useful debugging tool, and it handles large open-source repos well.",
+      "name": "Aakash Bhardwaj",
+      "url": "https://www.linkedin.com/in/aakash-bhardwaj-sky/",
+      "role": "Solution Architect, Senior AI Engineer"
+    },
+    {
+      "show": true,
+      "text": "I tested it on a real PDF parsing bug. It understood the underlying error context and gave a more accurate fix than the AI tools I normally reach for.",
+      "name": "Akshat Tamrakar",
+      "url": "",
+      "role": "Full Stack Developer, tested on a live production bug"
+    },
+    {
+      "show": true,
+      "text": "An answer where every claim links to the exact line is much easier to trust than a confident summary.",
+      "name": "Milind Bansal",
+      "url": "https://github.com/MilindDevX",
+      "role": "Open-source contributor, author of Composio PR #5024"
+    }
+  ]
+}
