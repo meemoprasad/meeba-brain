@@ -13,6 +13,10 @@ This repository holds public, checkable examples of Meeba Brain on real open-sou
 - Try it: [meeba.ai/brain](https://meeba.ai/brain) (free to start, read-only GitHub access)
 - Discuss a case or send a counterexample: [Discussions](https://github.com/meemoprasad/meeba-brain/discussions)
 
+> "Meeba Brain is a useful debugging tool, and it handles large open-source repos well."
+>
+> — [Aakash Bhardwaj](https://www.linkedin.com/in/aakash-bhardwaj-sky/), Solution Architect, Senior AI Engineer
+
 > "An answer where every claim links to the exact line is much easier to trust than a confident summary."
 >
 > — [Milind Bansal](https://github.com/MilindDevX), open-source contributor (author of Composio PR #5024)
