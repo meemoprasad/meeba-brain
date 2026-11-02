@@ -9,7 +9,7 @@
 **Watch the 90-second demo:** the merged fix on GitHub, the question, the answer, and a click from a claim to the exact line it cites.
 
 
-https://github.com/user-attachments/assets/aba25965-5545-462d-8b49-c5914363ff73
+https://github.com/user-attachments/assets/6a92cfbc-a4be-4d37-8188-c01835fb932e
 
 
 Meeba Brain is an evidence-first code intelligence layer for teams using AI coding tools. It traces impact and root causes across large codebases, cites the exact code behind every claim, and marks what it couldn't verify. It works in the web app and inside Cursor and Claude Code via MCP.
