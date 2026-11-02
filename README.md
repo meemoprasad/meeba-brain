@@ -2,14 +2,14 @@
 
 **Know what your code change really breaks, with evidence.**
 
-![Meeba Brain answering what three frappe/lending commits affect outside their diff, with file:line evidence](demos/images/meeba-brain-demo.gif)
+![Clicking a file:line link in a Meeba Brain answer opens the exact lines it cites in the code](demos/images/meeba-brain-demo.gif)
 
-*Built from screenshots of a real answer on frappe/lending (72.5 s run). See the [case study](demos/frappe-lending-1537-early-payment-first-emi.md).*
+*From a real answer on frappe/lending: click a claim's `file:line` link and the cited lines open in the code. See the [case study](demos/frappe-lending-1537-early-payment-first-emi.md).*
 
 **Watch the 90-second demo:** the merged fix on GitHub, the question, the answer, and a click from a claim to the exact line it cites.
 
 
-https://github.com/user-attachments/assets/b5963e16-36fd-4398-8b51-54f0011df5a2
+https://github.com/user-attachments/assets/aba25965-5545-462d-8b49-c5914363ff73
 
 
 Meeba Brain is an evidence-first code intelligence layer for teams using AI coding tools. It traces impact and root causes across large codebases, cites the exact code behind every claim, and marks what it couldn't verify. It works in the web app and inside Cursor and Claude Code via MCP.
