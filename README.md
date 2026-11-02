@@ -2,7 +2,7 @@
 
 **Know what your code change really breaks, with evidence.**
 
-![Clicking a file:line link in a Meeba Brain answer opens the exact lines it cites in the code](demos/images/meeba-brain-demo.gif)
+![Clicking a file:line link in a Meeba Brain answer opens the exact lines it cites in the code](demos/images/meeba-brain-demo-v2.gif)
 
 *From a real answer on frappe/lending: click a claim's `file:line` link and the cited lines open in the code. See the [case study](demos/frappe-lending-1537-early-payment-first-emi.md).*
 
